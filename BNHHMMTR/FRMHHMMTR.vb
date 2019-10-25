@@ -1302,12 +1302,8 @@ Public Class FRMHHMMTR
   Private Sub grvClienti_NTSFocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles grvClienti.NTSFocusedRowChanged
     Try
 
-      'oCleHh.CPNERowchanged(grvClienti.NTSGetCurrentDataRow)
-
       Dim drClienti As DataRow
       drClienti = grvClienti.NTSGetCurrentDataRow()
-
-      'oCleHh.CPNEAssociaDTXXX(drClienti)
 
       edxx_matricola.Text = drClienti!hh_matricola.ToString
       edxx_matricolaproduttore.Text = drClienti!hh_matrproduttore.ToString
