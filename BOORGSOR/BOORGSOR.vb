@@ -542,6 +542,7 @@ Public Class FROORGSOR
       'ec_hhrifmatr = CType(NTSFindControlByName(Me, "ec_hhrifmatr"), NTSGridColumn)
       hh_rifmatr = CType(grvRighe.Columns("hh_rifmatr"), NTSGridColumn)
       hh_rifmatr.NTSForzaVisZoom = True
+      hh_rifmatr.NTSSetParamZoom("FRMZOOMTR")
 
     Catch ex As Exception
       '-------------------------------------------------
@@ -549,6 +550,7 @@ Public Class FROORGSOR
       '-------------------------------------------------
     End Try
   End Sub
+
   Public Overrides Sub FRMORGSOR_Load(ByVal sender As Object, ByVal e As System.EventArgs)
     Call MyBase.FRMORGSOR_Load(sender, e)
     Try
@@ -1061,7 +1063,7 @@ Public Class FROORGSOR
         oCP.dPar1 = CInt(edEt_conto.Text)
         'oCP.strBanc1 = grvRighe.NTSGetCurrentDataRow!ec_codart.ToString
 
-        oMenu.RunChild("NTSInformatica", "FRMHHMATR", "Matricole", DittaCorrente, "", "BNHHMATR", oCP, "", True, True)
+        oMenu.RunChild("NTSInformatica", "FRMHHMMTR", "Matricole", DittaCorrente, "", "BNHHMMTR", oCP, "", True, True)
         If oCP.strBanc1 <> "" Then
           grvRighe.NTSGetCurrentDataRow!hh_rifmatr = oCP.strBanc1
         End If

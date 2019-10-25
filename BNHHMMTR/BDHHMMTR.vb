@@ -20,22 +20,66 @@ Public Class CLDHHMMTR
       '--------------------------------------------------------------
     End Try
   End Sub
-  Public Sub CPNERicerca(ditta As String, ds As DataSet, drxxx As DataRow)
-    Dim StrSql As String
-    StrSql = "Select 'N' as xx_sel, td_conto, td_tipobf, td_codagen, td_codpaga, td_datord, td_datord, an_descr1, td_riferim, movord.*"
-    StrSql += " FROM (testord INNER JOIN movord ON (testord.td_numord = movord.mo_numord) AND (testord.td_serie = movord.mo_serie) AND (testord.td_anno = movord.mo_anno) AND (testord.td_tipork = movord.mo_tipork) AND (testord.codditt = movord.codditt)) INNER JOIN anagra ON (testord.td_conto = anagra.an_conto) AND (testord.codditt = anagra.codditt)"
-    StrSql += " where testord.codditt = " & CStrSQL(ditta)
-    StrSql += " and testord.td_tipork<>'Q'"
-    StrSql += " and td_datord >= " & CDataSQL(CDate(drxxx!xx_dadtord)) & " and td_datord <= " & CDataSQL(CDate(drxxx!xx_adtord))
-    StrSql += " and mo_datcons >= " & CDataSQL(CDate(drxxx!xx_dadtcons)) & " and mo_datcons <= " & CDataSQL(CDate(drxxx!xx_adtcons))
-    StrSql += " and td_conto >= " & drxxx!xx_daconto.ToString & " and td_conto <= " & drxxx!xx_aconto.ToString
-    If drxxx!xx_soloap.ToString = "S" Then
-      StrSql += " and mo_flevas = 'C'"
-    End If
-    CPNEPulisciDs(ds, "Ric")
-    ds = OpenRecordset(StrSql, DBTIPO.DBAZI, "Ric", ds)
+  Public Sub CPNERicercaMatricola(ditta As String, ds As DataSet, strmatricola As String)
+    Dim StrSql As String = ""
+    Try
 
-
-
+      StrSql = "SELECT hhmatricole.hh_matricola as xx_matricola, hhmatricole.hh_contocli as xx_contocli, hhmatricole.hh_matrproduttore as xx_matrproduttore"
+      StrSql += ", hhmatricole.hh_codart as xx_codart, artico.ar_descr as xx_note, hhmatricole.hh_datainstallazione as xx_datainstallazione"
+      StrSql += ", hhmatricole.hh_dataritiro as xx_dataritiro, hhmatricole.hh_ubicazione as xx_ubicazione, anagra.an_descr1 as xx_descr"
+      StrSql += " from hhmatricole join anagra on hhmatricole.hh_contocli=anagra.an_conto "
+      StrSql += " join artico on hhmatricole.hh_codart=artico.ar_codart "
+      StrSql += "where hhmatricole.codditt=" & CStrSQL(ditta)
+      If strmatricola <> "" Then
+        StrSql += "and hhmatricole.hh_matricola like " & CStrSQL("%" & Replace(strmatricola, "*", "%") & "%")
+      End If
+      CPNEPulisciDs(ds, "dtmatr")
+      OpenRecordset(StrSql, CLE__APP.DBTIPO.DBAZI, "dtmatr", ds)
+    Catch ex As Exception
+      '--------------------------------------------------------------
+      Throw (New NTSException(GestError(ex, Me, StrSql, oApp.InfoError, "", False)))
+      '--------------------------------------------------------------
+    End Try
   End Sub
+
+
+  Public Sub CPNERicerca(ditta As String, ds As DataSet, strmatricola As String, strarticolo As String)
+    Dim StrSql As String = ""
+    Try
+
+      StrSql = "SELECT hhmatricole.*, (CASE WHEN hhmatricole.hh_noleggiovendita = 1 THEN 'Vendita' ELSE 'Noleggio' END)  AS xx_noleggiovendita, anagra.an_descr1, artico.ar_descr as xx_descr"
+      StrSql += " from hhmatricole join anagra on hhmatricole.hh_contocli=anagra.an_conto "
+      StrSql += " join artico on hhmatricole.hh_codart=artico.ar_codart "
+      StrSql += "where hhmatricole.codditt=" & CStrSQL(ditta)
+      If strmatricola <> "" Then
+        StrSql += "and hhmatricole.hh_matricola =" & CStrSQL(strmatricola)
+      End If
+      If strarticolo <> "" Then
+        StrSql += "and hhmatricole.hh_codart = " & CStrSQL(strarticolo)
+      End If
+      CPNEPulisciDs(ds, "XXX")
+      OpenRecordset(StrSql, CLE__APP.DBTIPO.DBAZI, "XXX", ds)
+    Catch ex As Exception
+      '--------------------------------------------------------------
+      Throw (New NTSException(GestError(ex, Me, StrSql, oApp.InfoError, "", False)))
+      '--------------------------------------------------------------
+    End Try
+  End Sub
+
+  Public Sub CPNEUpdateMatricola(ditta As String, strmatricola As String, strmatricolaNuova As String)
+    Dim StrSql As String = ""
+
+    StrSql = "update hhmatricole set hhmatricole.hh_matricola = " & CStrSQL(strmatricolaNuova)
+    StrSql += " where hhmatricole.codditt=" & CStrSQL(ditta)
+    StrSql += " and hhmatricole.hh_matricola=" & CStrSQL(strmatricola)
+
+    Try
+      Execute(StrSql, DBTIPO.DBAZI)
+    Catch ex As Exception
+      '--------------------------------------------------------------
+      Throw (New NTSException(GestError(ex, Me, StrSql, oApp.InfoError, "", False)))
+      '--------------------------------------------------------------
+    End Try
+  End Sub
+
 End Class

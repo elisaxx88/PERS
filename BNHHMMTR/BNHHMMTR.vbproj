@@ -129,6 +129,12 @@
   <ItemGroup>
     <Compile Include="BDHHMMTR.vb" />
     <Compile Include="BEHHMMTR.vb" />
+    <Compile Include="FRMZOOMTR.Designer.vb">
+      <DependentUpon>FRMZOOMTR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FRMZOOMTR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FRMHHMMTR.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FRMZOOMTR.resx">
+      <DependentUpon>FRMZOOMTR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FRMHHMMTR.resx">
       <DependentUpon>FRMHHMMTR.vb</DependentUpon>
     </EmbeddedResource>

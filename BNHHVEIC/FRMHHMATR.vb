@@ -88,6 +88,11 @@ Public Class FRMHHMATR
     Me.NtsButton1 = New NTSInformatica.NTSButton()
     Me.Tlb_Seleziona = New NTSInformatica.NTSButton()
     Me.NtsGroupBox2 = New NTSInformatica.NTSGroupBox()
+    Me.edxx_codconto = New NTSInformatica.NTSTextBoxStr()
+    Me.NtsLabel2 = New NTSInformatica.NTSLabel()
+    Me.NtsLabel1 = New NTSInformatica.NTSLabel()
+    Me.edxx_matricola = New NTSInformatica.NTSTextBoxStr()
+    Me.Tlb_Ricerca = New NTSInformatica.NTSButton()
     Me.MATRICOLE = New NTSInformatica.NTSGroupBox()
     Me.grMatricole = New NTSInformatica.NTSGrid()
     Me.grvMatricole = New NTSInformatica.NTSGridView()
@@ -99,20 +104,15 @@ Public Class FRMHHMATR
     Me.rl_dtscadgaracq = New NTSInformatica.NTSGridColumn()
     Me.rl_codart = New NTSInformatica.NTSGridColumn()
     Me.rl_conto = New NTSInformatica.NTSGridColumn()
-    Me.Tlb_Ricerca = New NTSInformatica.NTSButton()
-    Me.edxx_matricola = New NTSInformatica.NTSTextBoxStr()
-    Me.NtsLabel1 = New NTSInformatica.NTSLabel()
-    Me.NtsLabel2 = New NTSInformatica.NTSLabel()
-    Me.edxx_codconto = New NTSInformatica.NTSTextBoxStr()
     CType(Me.dttSmartArt, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.NtsGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.NtsGroupBox2.SuspendLayout()
+    CType(Me.edxx_codconto.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.edxx_matricola.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.MATRICOLE, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.MATRICOLE.SuspendLayout()
     CType(Me.grMatricole, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grvMatricole, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.edxx_matricola.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.edxx_codconto.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'PrintDialog1
@@ -161,6 +161,57 @@ Public Class FRMHHMATR
     Me.NtsGroupBox2.Size = New System.Drawing.Size(684, 132)
     Me.NtsGroupBox2.Text = "FILTRA MATRICOLE"
     '
+    'edxx_codconto
+    '
+    Me.edxx_codconto.EditValue = ""
+    Me.edxx_codconto.Location = New System.Drawing.Point(184, 72)
+    Me.edxx_codconto.Name = "edxx_codconto"
+    Me.edxx_codconto.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+    Me.edxx_codconto.Properties.AppearanceDisabled.Options.UseForeColor = True
+    Me.edxx_codconto.Properties.AutoHeight = False
+    Me.edxx_codconto.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+    Me.edxx_codconto.Properties.MaxLength = 65536
+    Me.edxx_codconto.RightToLeft = System.Windows.Forms.RightToLeft.No
+    Me.edxx_codconto.Size = New System.Drawing.Size(100, 20)
+    '
+    'NtsLabel2
+    '
+    Me.NtsLabel2.BackColor = System.Drawing.Color.Transparent
+    Me.NtsLabel2.Location = New System.Drawing.Point(84, 72)
+    Me.NtsLabel2.Name = "NtsLabel2"
+    Me.NtsLabel2.Size = New System.Drawing.Size(100, 20)
+    Me.NtsLabel2.Text = "Cod.Conto"
+    Me.NtsLabel2.UseMnemonic = False
+    '
+    'NtsLabel1
+    '
+    Me.NtsLabel1.BackColor = System.Drawing.Color.Transparent
+    Me.NtsLabel1.Location = New System.Drawing.Point(84, 48)
+    Me.NtsLabel1.Name = "NtsLabel1"
+    Me.NtsLabel1.Size = New System.Drawing.Size(100, 20)
+    Me.NtsLabel1.Text = "Matricola"
+    Me.NtsLabel1.UseMnemonic = False
+    '
+    'edxx_matricola
+    '
+    Me.edxx_matricola.EditValue = ""
+    Me.edxx_matricola.Location = New System.Drawing.Point(184, 48)
+    Me.edxx_matricola.Name = "edxx_matricola"
+    Me.edxx_matricola.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+    Me.edxx_matricola.Properties.AppearanceDisabled.Options.UseForeColor = True
+    Me.edxx_matricola.Properties.AutoHeight = False
+    Me.edxx_matricola.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+    Me.edxx_matricola.Properties.MaxLength = 65536
+    Me.edxx_matricola.RightToLeft = System.Windows.Forms.RightToLeft.No
+    Me.edxx_matricola.Size = New System.Drawing.Size(100, 20)
+    '
+    'Tlb_Ricerca
+    '
+    Me.Tlb_Ricerca.Location = New System.Drawing.Point(592, 72)
+    Me.Tlb_Ricerca.Name = "Tlb_Ricerca"
+    Me.Tlb_Ricerca.Size = New System.Drawing.Size(76, 26)
+    Me.Tlb_Ricerca.Text = "Ricerca"
+    '
     'MATRICOLE
     '
     Me.MATRICOLE.AllowDrop = True
@@ -168,9 +219,9 @@ Public Class FRMHHMATR
     Me.MATRICOLE.Appearance.Options.UseBackColor = True
     Me.MATRICOLE.Controls.Add(Me.grMatricole)
     Me.MATRICOLE.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.MATRICOLE.Location = New System.Drawing.Point(0, 136)
+    Me.MATRICOLE.Location = New System.Drawing.Point(0, 132)
     Me.MATRICOLE.Name = "MATRICOLE"
-    Me.MATRICOLE.Size = New System.Drawing.Size(684, 228)
+    Me.MATRICOLE.Size = New System.Drawing.Size(684, 232)
     Me.MATRICOLE.Text = "MATRICOLE"
     '
     'grMatricole
@@ -179,7 +230,7 @@ Public Class FRMHHMATR
     Me.grMatricole.Location = New System.Drawing.Point(2, 21)
     Me.grMatricole.MainView = Me.grvMatricole
     Me.grMatricole.Name = "grMatricole"
-    Me.grMatricole.Size = New System.Drawing.Size(680, 205)
+    Me.grMatricole.Size = New System.Drawing.Size(680, 209)
     Me.grMatricole.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.grvMatricole})
     '
     'grvMatricole
@@ -302,57 +353,6 @@ Public Class FRMHHMATR
     Me.rl_conto.Visible = True
     Me.rl_conto.VisibleIndex = 7
     '
-    'Tlb_Ricerca
-    '
-    Me.Tlb_Ricerca.Location = New System.Drawing.Point(592, 72)
-    Me.Tlb_Ricerca.Name = "Tlb_Ricerca"
-    Me.Tlb_Ricerca.Size = New System.Drawing.Size(76, 26)
-    Me.Tlb_Ricerca.Text = "Ricerca"
-    '
-    'edxx_matricola
-    '
-    Me.edxx_matricola.EditValue = ""
-    Me.edxx_matricola.Location = New System.Drawing.Point(184, 48)
-    Me.edxx_matricola.Name = "edxx_matricola"
-    Me.edxx_matricola.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-    Me.edxx_matricola.Properties.AppearanceDisabled.Options.UseForeColor = True
-    Me.edxx_matricola.Properties.AutoHeight = False
-    Me.edxx_matricola.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-    Me.edxx_matricola.Properties.MaxLength = 65536
-    Me.edxx_matricola.RightToLeft = System.Windows.Forms.RightToLeft.No
-    Me.edxx_matricola.Size = New System.Drawing.Size(100, 20)
-    '
-    'NtsLabel1
-    '
-    Me.NtsLabel1.BackColor = System.Drawing.Color.Transparent
-    Me.NtsLabel1.Location = New System.Drawing.Point(84, 48)
-    Me.NtsLabel1.Name = "NtsLabel1"
-    Me.NtsLabel1.Size = New System.Drawing.Size(100, 20)
-    Me.NtsLabel1.Text = "Matricola"
-    Me.NtsLabel1.UseMnemonic = False
-    '
-    'NtsLabel2
-    '
-    Me.NtsLabel2.BackColor = System.Drawing.Color.Transparent
-    Me.NtsLabel2.Location = New System.Drawing.Point(84, 72)
-    Me.NtsLabel2.Name = "NtsLabel2"
-    Me.NtsLabel2.Size = New System.Drawing.Size(100, 20)
-    Me.NtsLabel2.Text = "Cod.Conto"
-    Me.NtsLabel2.UseMnemonic = False
-    '
-    'edxx_codconto
-    '
-    Me.edxx_codconto.EditValue = ""
-    Me.edxx_codconto.Location = New System.Drawing.Point(184, 72)
-    Me.edxx_codconto.Name = "edxx_codconto"
-    Me.edxx_codconto.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-    Me.edxx_codconto.Properties.AppearanceDisabled.Options.UseForeColor = True
-    Me.edxx_codconto.Properties.AutoHeight = False
-    Me.edxx_codconto.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-    Me.edxx_codconto.Properties.MaxLength = 65536
-    Me.edxx_codconto.RightToLeft = System.Windows.Forms.RightToLeft.No
-    Me.edxx_codconto.Size = New System.Drawing.Size(100, 20)
-    '
     'FRMHHMATR
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -364,12 +364,12 @@ Public Class FRMHHMATR
     CType(Me.dttSmartArt, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.NtsGroupBox2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.NtsGroupBox2.ResumeLayout(False)
+    CType(Me.edxx_codconto.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.edxx_matricola.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.MATRICOLE, System.ComponentModel.ISupportInitialize).EndInit()
     Me.MATRICOLE.ResumeLayout(False)
     CType(Me.grMatricole, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grvMatricole, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.edxx_matricola.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.edxx_codconto.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub
